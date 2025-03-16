@@ -10,6 +10,10 @@
 - use Nprogress for route
 
 <p align="center"><a href="#" target="_blank"><img src="https://github.com/user-attachments/assets/37671a0b-e808-4cb4-82d2-c45307416468" width="400" alt="Laravel With Vue"></a></p>
+
+# Get template (required latest version of composer, laravel and npm)
+- npm install
+- composer run dev
   
 # Basic create and install Laravel with vue (simple template guide)
 - composer create-project laravel/laravel laravel-anyname-vue
