@@ -4,6 +4,7 @@
 - has working search query
 - has a working pagination
 - using sqlite as example database
+- vue3 Composition API 
 
 <p align="center"><a href="#" target="_blank"><img src="https://github.com/user-attachments/assets/37671a0b-e808-4cb4-82d2-c45307416468" width="400" alt="Laravel With Vue"></a></p>
   
