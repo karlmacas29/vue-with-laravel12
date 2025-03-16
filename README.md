@@ -80,7 +80,7 @@ DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=
 
-# Create a table with migration to database and Controller
+# Create a Model(table) with Controller to the database
 - php artisan make:model Product -mc
 
 # Now go to databases/migration and find a php file that name a timestamp today together with Product model name ex: '2025_03_16_044230_create_products_table.php' and find a code that structure like this:
