@@ -102,7 +102,7 @@ DB_PASSWORD=
 npm install --save vue-toastification@next
 
 
-# Create api Laravel and vue
+# Install Sanctum Laravel API for Axios Vue that use for CRUD 
 - php artisan install:api
 
 # Go to app/Models/User.php add HasApiTokens like this structure
