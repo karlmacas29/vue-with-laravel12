@@ -31,7 +31,7 @@ export default defineConfig({
 });
 
 # Go to resources/js and add a component folder and create App.vue file
-
+<template></template>
 # Go to app.js and configure like this for adding vue-router plugin:
 
 import './bootstrap';
