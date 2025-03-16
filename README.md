@@ -4,7 +4,10 @@
 - has working search query
 - has a working pagination
 - using sqlite as example database
-- vue3 Composition API 
+- vue3 Composition API
+- use Tailwind and Flowbite for component and modal
+- use vue toastification for status
+- use Nprogress for route
 
 <p align="center"><a href="#" target="_blank"><img src="https://github.com/user-attachments/assets/37671a0b-e808-4cb4-82d2-c45307416468" width="400" alt="Laravel With Vue"></a></p>
   
@@ -112,6 +115,10 @@ npm install --save vue-toastification@next
 # Install Intervention Image (this package when you have a image uploader in your project and upload via databases in laravel)
 - composer require intervention/image-Laravel
 - php artisan vendor:publish --provider="Intervention\Image\Laravel\ServiceProvider"
+
+# Issues from now
+- Can't upload image (soon will be fix)
+
 
 
 
