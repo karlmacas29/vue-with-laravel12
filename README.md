@@ -1,7 +1,12 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://res.cloudinary.com/benjamincrozat-com/image/fetch/c_scale,f_webp,q_auto,w_1200/https://life-long-bunny.fra1.digitaloceanspaces.com/media-library/production/194/LpHvHmvUKRwWojXHVS9uThtKeNLqWv-metabGFyYXZlbC12dWUuanBn-.jpg" width="400" alt="Laravel With Vue"></a></p>
 
-# Laravel 12 (Backend) With Vue 3 (Frontend)(CRUD)
+# Laravel 12 (Backend) With Vue 3 (Frontend)(CRUD) Building a Single Page Application
+- has working search query
+- has a working pagination
+- using sqlite as example database
 
+<p align="center"><a href="#" target="_blank"><img src="https://github.com/user-attachments/assets/37671a0b-e808-4cb4-82d2-c45307416468" width="400" alt="Laravel With Vue"></a></p>
+  
 # Basic create and install Laravel with vue (simple template guide)
 - composer create-project laravel/laravel laravel-anyname-vue
 
@@ -106,6 +111,8 @@ npm install --save vue-toastification@next
 # Install Intervention Image (this package when you have a image uploader in your project and upload via databases in laravel)
 - composer require intervention/image-Laravel
 - php artisan vendor:publish --provider="Intervention\Image\Laravel\ServiceProvider"
+
+
 
 
 
