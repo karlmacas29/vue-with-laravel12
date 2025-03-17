@@ -7,7 +7,7 @@ const toast = useToast();
 const form = reactive({
     name: "",//
     description: "",//
-    image: "",//
+    image: null,//
     type: "", //
     quantity: "", //
     price: ""//
@@ -16,33 +16,42 @@ const form = reactive({
 let errors = ref([])
 const isModal = ref(false)
 
-const handeFileChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = (file) => {
-        form.image = reader.result; // Convert to Base64
-    };
-
-    if (file) {
-        reader.readAsDataURL(file);
-    }
+const handeFileChange = (event) => {
+    form.image = event.target.files[0];
 }
 
 const handleSave = async() => {
-    await axios.post('http://127.0.0.1:8000/api/products', form, { 
+
+    const formData = new FormData();
+    
+    // Append fields individually
+    formData.append("name", form.name);
+    formData.append("description", form.description);
+    formData.append("type", form.type);
+    formData.append("quantity", form.quantity);
+    formData.append("price", form.price);
+
+    // Append image only if it's not null
+    if (form.image) {
+        formData.append("image", form.image);
+    }
+
+    await axios.post('http://127.0.0.1:8000/api/products', formData, { 
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data'
         },
         withCredentials: true // Required for Laravel Sanctum
      }).then((response)=>{
         toast.success('Product Added Successfully')
-        form.name = ''
-        form.description = ''
-        form.image = ''
-        form.price = ''
-        form.quantity = ''
-        form.type = ''
+         // Reset form fields
+         Object.assign(form, {
+            name: "",
+            description: "",
+            image: null,
+            type: "",
+            quantity: "",
+            price: ""
+        });
         isModal.value = false
      }).catch((error)=>{
         if (error.response && error.response.data.errors) {
@@ -54,6 +63,10 @@ const handleSave = async() => {
 
             if (errors.value.description) {
                 toast.error('Error => ' + errors.value.description[0]); // Access first error message
+            }
+
+            if (errors.value.image) {
+                toast.error('Error => ' + errors.value.image[0]); // Access first error message
             }
             console.log(errors.value);
         }
@@ -97,7 +110,7 @@ const handleSave = async() => {
                         <div class="col-span-2">
                             <!-- images -->
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
-                            <input accept="image/*" @change="handeFileChange" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" type="file">
+                            <input type="file" accept="image/png, image/jpeg" @change="handeFileChange" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" >
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG or JPG (MAX. 800x400px).</p>
                         </div>
                         <div class="col-span-2 sm:col-span-1">

@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref, watch,} from 'vue'
+import {onMounted, ref, watch} from 'vue'
 import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification'
 const toast = useToast();
@@ -19,6 +19,7 @@ const getProducts = async() =>{
    await axios.get('/api/products?&searchQuery='+searchQuery.value).then((response)=>{
     products.value = response.data.products.data
     links.value =response.data.products.links
+    console.log(products.value)
     //add .data if you working with paginate() in php
     //add links.value =response.data.products.links
     // add let links = ref([])
@@ -93,7 +94,8 @@ onMounted(async()=>{
 </script>
 <template>
     <div class="flex flex-col ">
-      <div class="pb-4 bg-white dark:bg-gray-900">
+      <div class="flex justify-between">
+        <div class="pb-4 bg-white dark:bg-gray-900">
             <label for="table-search" class="sr-only">Search</label>
             <div class="relative mt-1">
                 <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -104,6 +106,10 @@ onMounted(async()=>{
                 <input v-model="searchQuery" type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items name">
             </div>
         </div>
+        <div>
+          <button type="button" @click="getProducts" class="block bg-blue-500 hover:bg-blue-700 text-white px-2 py-2 rounded-md">Refresh</button>
+        </div>
+      </div>
       <div class="-m-1.5 overflow-x-auto">
         <div class="p-1.5 min-w-full inline-block align-middle">
           <div class="border border-gray-200 rounded-lg overflow-hidden dark:border-neutral-700">
@@ -122,7 +128,7 @@ onMounted(async()=>{
               <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
                 <tr v-for="p in products" :key="p.id">
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
-                    <img loading="lazy" class="w-10 h-10 rounded-full" v-lazy="p.image" alt="Rounded avatar">
+                    <img :src="p.image" loading="lazy" class="w-10 h-10 rounded-full" v-lazy="p.image" alt="Rounded avatar">
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ p.name }}</td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ p.description }}</td>
